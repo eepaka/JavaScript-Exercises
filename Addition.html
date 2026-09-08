@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input id="numberOne" type="number">+
+    <input id="numberTwo" type="number">
+    <p id="textArea">Tähän tulee tulos</p>
+    <button id="btn">Laske</button>
+
+    <script>
+        //luetaan elementit
+        const numberOne = document.getElementById("numberOne")
+        const numberTwo = document.getElementById("numberTwo")
+        const textArea = document.getElementById("textArea")
+        const btn = document.getElementById("btn")
+
+        //tapahtumankuuntelija
+        btn.onclick = summa
+
+        //luodaan funktio
+        //luetaan arvot
+        //parsetetaan
+        //summataan
+        //kirjoitetaan verkkosivulle
+        function summa() {
+            const valueOne = parseInt(numberOne.value)
+            const valueTwo = parseInt(numberTwo.value)
+
+            textArea.innerHTML = valueOne + valueTwo
+        }
+    </script>
+
+</body>
+
+</html>

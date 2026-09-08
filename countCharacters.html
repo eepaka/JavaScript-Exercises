@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="wordInput" placeholder="Tämä on lause">
+    <p>anna virke</p>
+    <input type="text" id="letter" placeholder="ä">
+    <p>Anna kirjain</p>
+    <button id="btn">Laske esiintymät</button>
+    <p id="answer">Tähän tulee vastaus</p>
+
+    <script>
+
+        //Luodaan muuttujat
+
+        const givenString = document.getElementById("wordInput")
+        const searchChar = document.getElementById("letter")
+        const actionButton = document.getElementById("btn")
+        const textArea = document.getElementById("answer")
+
+        actionButton.onclick = search //funktion laukaisu
+
+        function search() {
+
+            const sent = wordInput.value.toLowerCase() //Annetujen arvojen käyttöönotto funktion sisällä
+            const char = letter.value.toLowerCase()    //Arvojen sanitointi
+            let charAmount = 0
+
+            for (i = 0; i < sent.length; i++) {
+                if (sent[i] == char)
+                    charAmount++;
+                console.log(charAmount)
+
+            }
+            textArea.innerHTML = `kirjain ${letter.value} esiintyy virkkeessä ${charAmount} kertaa lauseessa: "${givenString.value}"`
+        }
+
+
+    </script>
+
+</body>
+
+</html>

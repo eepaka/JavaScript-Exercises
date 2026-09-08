@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="laji" value="Koira">
+    <p>Syötä lemmikkisi laji</p>
+    <input type="number" id="ika" value="10">
+    <p>Syötä lemmikkisi ikä</p>
+    <input type="text" id="nimi" value="Hessu">
+    <p>Syötä lemmikkisi nimi</p>
+    <button id="laheta">Lisää lemmikki</button>
+    <p id="kuittaus">Lemmikkisi on:</p>
+    <p id="lemmikkiLista">Kirjatut lemmikit ovat:</p>
+
+
+    <script>
+        //Luodaan muuttujia HTML-puoleen
+        const speciesInput = document.getElementById("laji")
+        const ageInput = document.getElementById("ika")
+        const nameInput = document.getElementById("nimi")
+        const button = document.getElementById("laheta")
+        const petReport = document.getElementById("kuittaus")
+        const petList = document.getElementById("lemmikkiLista")
+        const LemmikkiLista = [] //Tekee taulukon listatuille lemmikeille
+
+
+        button.onclick = creation
+
+
+
+        //Kutsutaan konstruktoria inputin syötteillä
+        function creation() {
+            const loggedPet = new pet(speciesInput.value, ageInput.value, nameInput.value)
+            LemmikkiLista.push(loggedPet)
+            petReport.textContent = `Lemmikkisi on: ${loggedPet.name}, laji: ${loggedPet.species}, ikä: ${loggedPet.age}`
+            petList.innerHTML = `Kirjatut lemmikit ovat:<br>Nimi: ${LemmikkiLista.map(pet =>
+                `${pet.name}, Laji: ${pet.species}, Ikä: ${pet.age}`
+            ).join("<br>")}` //Lisää lemmikin LemmikkiLista -taulukkoon
+
+        }
+
+
+        /* Luodaan konstruktori */
+
+        function pet(species, age, name) {
+            this.species = species;
+            this.age = age;
+            this.name = name;
+
+        }
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>
