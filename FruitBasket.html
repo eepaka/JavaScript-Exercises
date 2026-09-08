@@ -1,0 +1,102 @@
+<!-- Luokaa hedelmäkoritaulukko
+    esim banaani {paino, hinta}
+    luokaa funktio joka laskee korin kokonaishinnan -->
+
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="banana">Lisää banaani</button><br>
+    <button id="apple">Lisää omena</button><br>
+    <button id="pear">Lisää päärynä</button><br>
+    <p id="fruitBasket">Hedelmät korissa:</p> <button id="basketCheck">Päivitä korin sisältö</button>
+    <button id="priceButton">Laske yhteishinta</button><br>
+    <p id="totalPrice">hinta yhteensä</p>
+
+</body>
+
+<script>
+
+    // Haetaan elementtejä HTML:stä
+
+    const bananaButton = document.getElementById("banana")
+    const appleButton = document.getElementById("apple")
+    const pearButton = document.getElementById("pear")
+
+    const sumButton = document.getElementById("priceButton")
+
+    const basketContents = document.getElementById("fruitBasket")
+    const finalPrice = document.getElementById("totalPrice")
+
+    const updateButton = document.querySelector("#basketCheck")
+
+    let basketArray = [] // Luodaan array jonne hedelmät menee
+
+    const banana = { name: "banaani", price: 0.79, weight: 0.35 } // Luotavien hedelmien tiedot
+    const apple = { name: "omena", price: 0.69, weight: 0.25 }
+    const pear = { name: "päärynä", price: 0.59, weight: 0.15 }
+
+    let bananaCount = 0 // Laskureita korin sisällölle
+    let appleCount = 0
+    let pearCount = 0
+
+
+    updateButton.addEventListener("click", updateBasket) // Päivittää hedelmälaskurit sivulle TODO päivitä luvut kun hedelmienlisäysfunktioita haetaan
+
+    bananaButton.addEventListener("click", addBanana)
+    bananaButton.addEventListener("click", updateBasket)
+
+    appleButton.addEventListener("click", addApple)
+    appleButton.addEventListener("click", updateBasket)
+
+    pearButton.addEventListener("click", addPear)
+    pearButton.addEventListener("click", updateBasket)
+
+
+
+    function updateBasket() {
+        basketContents.innerHTML = `Hedelmät korissa:<br> 
+    Banaanit: ${bananaCount}<br>Omenat: ${appleCount}<br>Päärynät: ${pearCount}`
+    }
+
+    //Funktiot hedelmien lisäämiselle kori-arrayhyn
+
+    sumButton.onclick = countPrice
+
+    function addBanana() {
+        basketArray.push(banana) // Lisää uuden hedelmän arrayhyn
+        console.log(basketArray) // tarkistetaan korin sisältö
+        bananaCount++            // Lisätään hedelmän laskuriin +1
+        console.log(bananaCount) // tarkistetaan että laskuri toimii
+    }
+
+    function addApple() {        // Samat muille hedelmille
+        basketArray.push(apple)
+        console.log(basketArray)
+        appleCount++
+    }
+
+    function addPear() {
+        basketArray.push(pear)
+        console.log(basketArray)
+        pearCount++
+    }
+
+    function countPrice() {     // Laskee kori-arrayn hintatiedot yhteen ja palauttaa sen. TODO korjaa pyöristysongelma
+        let total = 0
+        for (i = 0; i < basketArray.length; i++) {
+            total += basketArray[i].price
+        }
+        finalPrice.innerHTML = `hinta yhteensä: ${total}`
+
+    }
+</script>
+
+</html>
